@@ -58,11 +58,12 @@ fields = {
     'weight': st.text_input("משקל (קג):")
 }
 
+
 # Table data
 table_data = [
-    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב'), 'details': st.text_input('פרטים (קוצב לב)') if not st.checkbox('קוצב לב') else ''},
-    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)') if not st.checkbox('מסתם לב מלאכותי') else ''}
-    # Add other fields similarly
+    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='q1') else ''},
+    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='q2') else ''}
+    # Add other fields similarly with unique keys
 ]
 
 if st.button("Save as PDF"):
