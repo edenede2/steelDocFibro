@@ -22,7 +22,7 @@ def create_pdf(fields, table_data):
     # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
     # Example coordinates, you might need to adjust based on exact needs
     x_name = 300  # Adjust this value as needed
-    y_name = 264  # Adjust this value as needed
+    y_name = 300  # Adjust this value as needed
 
     # Fill text fields (adjust coordinates as needed)
     can.drawString(x_name, y_name, f"שם מלא: {fields['full_name']}")
