@@ -81,9 +81,9 @@ table_data = [
     # Add other fields similarly with unique keys
 ]
 
-if st.button("Save as PDF"):
+if st.button("Save as PDF", key='do1'):
     pdf_stream = create_pdf(fields, table_data)
     st.download_button(label="Download PDF", data=pdf_stream, file_name="edited_document.pdf", mime="application/pdf")
-if st.button("Save as PDF"):
+if st.button("Save as PDF",key='do2'):
     pdf_stream = create_pdf(fields, table_data)
     st.download_button(label="Download PDF", data=pdf_stream, file_name="edited_document.pdf", mime="application/pdf")
