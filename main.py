@@ -16,12 +16,12 @@ def create_pdf(fields, table_data):
     
     # Register and set the font
     pdfmetrics.registerFont(TTFont('FreeSans', font_path))
-    can.setFont('FreeSans', 10)
+    can.setFont('FreeSans', 30)
 
 
     # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
     # Example coordinates, you might need to adjust based on exact needs
-    x_name = 1000  # Adjust this value as needed
+    x_name = 300  # Adjust this value as needed
     y_name = 264  # Adjust this value as needed
 
     # Fill text fields (adjust coordinates as needed)
