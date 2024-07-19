@@ -61,8 +61,8 @@ fields = {
 
 # Table data
 table_data = [
-    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='q1') else ''},
-    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='q2') else ''}
+    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='a1') else ''},
+    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='a2') else ''}
     # Add other fields similarly with unique keys
 ]
 
