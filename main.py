@@ -1,12 +1,14 @@
 import streamlit as st
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter
 from io import BytesIO
 
 # Load the PDF
 pdf_path = 'doc.pdf'
-font_path = "/path/to/FreeSans.ttf"  # Adjust this to the path of your font file
+font_path = "OpenSans-VariableFont_wdth,wght.ttf"  # Adjust this to the path of your font file
 
 def create_pdf(fields, table_data):
     packet = BytesIO()
@@ -74,8 +76,8 @@ fields = {
 
 # Table data
 table_data = [
-    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='q1') else ''},
-    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='q2') else ''}
+    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='a1') else ''},
+    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='a2') else ''}
     # Add other fields similarly with unique keys
 ]
 
