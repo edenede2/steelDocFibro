@@ -6,21 +6,25 @@ from io import BytesIO
 
 # Load the PDF
 pdf_path = 'doc.pdf'
+font_path = "/path/to/FreeSans.ttf"  # Adjust this to the path of your font file
 
 def create_pdf(fields, table_data):
     packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
-
     
-    # Convert mm to pixels (assuming 72 DPI)
-    def mm_to_pixels(mm, dpi=72):
-        return (mm / 25.4) * dpi
+    # Register and set the font
+    pdfmetrics.registerFont(TTFont('FreeSans', font_path))
+    can.setFont('FreeSans', 10)
 
-    # Example coordinates (adjust based on your needs)
-    x_name = mm_to_pixels(162.37)
-    y_name = mm_to_pixels(12.28)
+    # Coordinates in points (assuming 72 DPI)
+    def mm_to_points(mm):
+        return mm * 2.83464567  # 1 mm = 2.83464567 points
 
-    
+    # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
+    # Example coordinates, you might need to adjust based on exact needs
+    x_name = 100  # Adjust this value as needed
+    y_name = 750  # Adjust this value as needed
+
     # Fill text fields (adjust coordinates as needed)
     can.drawString(x_name, y_name, f"שם מלא: {fields['full_name']}")
     can.drawString(x_name, y_name - 20, f"תאריך לידה: {fields['dob']}")
@@ -30,10 +34,10 @@ def create_pdf(fields, table_data):
     # Fill table (adjust coordinates as needed)
     start_y = y_name - 100  # Adjust the start position
     for row in table_data:
-        can.drawString(100, start_y, row['question'])
-        can.drawString(300, start_y, 'כן' if row['answer'] else 'לא')
+        can.drawString(x_name, start_y, row['question'])
+        can.drawString(x_name + 200, start_y, 'כן' if row['answer'] else 'לא')
         if not row['answer']:
-            can.drawString(400, start_y, row['details'])
+            can.drawString(x_name + 300, start_y, row['details'])
         start_y -= 20
     
     can.save()
@@ -68,14 +72,16 @@ fields = {
     'weight': st.text_input("משקל (קג):")
 }
 
-
 # Table data
 table_data = [
-    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='a1') else ''},
-    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='a2') else ''}
+    {'question': 'קוצב לב', 'answer': st.checkbox('קוצב לב', key='q1'), 'details': st.text_input('פרטים (קוצב לב)', key='d1') if not st.checkbox('קוצב לב', key='q1') else ''},
+    {'question': 'מסתם לב מלאכותי', 'answer': st.checkbox('מסתם לב מלאכותי', key='q2'), 'details': st.text_input('פרטים (מסתם לב מלאכותי)', key='d2') if not st.checkbox('מסתם לב מלאכותי', key='q2') else ''}
     # Add other fields similarly with unique keys
 ]
 
+if st.button("Save as PDF"):
+    pdf_stream = create_pdf(fields, table_data)
+    st.download_button(label="Download PDF", data=pdf_stream, file_name="edited_document.pdf", mime="application/pdf")
 if st.button("Save as PDF"):
     pdf_stream = create_pdf(fields, table_data)
     st.download_button(label="Download PDF", data=pdf_stream, file_name="edited_document.pdf", mime="application/pdf")
