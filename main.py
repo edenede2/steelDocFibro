@@ -18,14 +18,11 @@ def create_pdf(fields, table_data):
     pdfmetrics.registerFont(TTFont('FreeSans', font_path))
     can.setFont('FreeSans', 10)
 
-    # Coordinates in points (assuming 72 DPI)
-    def mm_to_points(mm):
-        return mm * 2.83464567  # 1 mm = 2.83464567 points
 
     # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
     # Example coordinates, you might need to adjust based on exact needs
-    x_name = 100  # Adjust this value as needed
-    y_name = 750  # Adjust this value as needed
+    x_name = 300  # Adjust this value as needed
+    y_name = 264  # Adjust this value as needed
 
     # Fill text fields (adjust coordinates as needed)
     can.drawString(x_name, y_name, f"שם מלא: {fields['full_name']}")
