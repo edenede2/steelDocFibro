@@ -10,15 +10,25 @@ pdf_path = 'doc.pdf'
 def create_pdf(fields, table_data):
     packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
+
     
-    # Fill text fields
-    can.drawString(100, 750, f"שם מלא: {fields['full_name']}")
-    can.drawString(100, 730, f"תאריך לידה: {fields['dob']}")
-    can.drawString(100, 710, f"גובה: {fields['height']} מטר")
-    can.drawString(100, 690, f"משקל: {fields['weight']} קג")
+    # Convert mm to pixels (assuming 72 DPI)
+    def mm_to_pixels(mm, dpi=72):
+        return (mm / 25.4) * dpi
+
+    # Example coordinates (adjust based on your needs)
+    x_name = mm_to_pixels(162.37)
+    y_name = mm_to_pixels(12.28)
+
     
-    # Fill table
-    start_y = 640
+    # Fill text fields (adjust coordinates as needed)
+    can.drawString(x_name, y_name, f"שם מלא: {fields['full_name']}")
+    can.drawString(x_name, y_name - 20, f"תאריך לידה: {fields['dob']}")
+    can.drawString(x_name, y_name - 40, f"גובה: {fields['height']} מטר")
+    can.drawString(x_name, y_name - 60, f"משקל: {fields['weight']} קג")
+    
+    # Fill table (adjust coordinates as needed)
+    start_y = y_name - 100  # Adjust the start position
     for row in table_data:
         can.drawString(100, start_y, row['question'])
         can.drawString(300, start_y, 'כן' if row['answer'] else 'לא')
