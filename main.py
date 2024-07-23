@@ -247,7 +247,7 @@ with st.form(key='table_form', clear_on_submit=True):
     if submit_button:
         # Create a canvas component
         canvas_result = st_canvas(
-            update_streamlit=True,
+            update_streamlit=False,
             fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
             stroke_width=2,
             stroke_color="#000000",
