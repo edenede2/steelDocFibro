@@ -258,16 +258,17 @@ with st.form(key='table_form', clear_on_submit=True):
         )
         if canvas_result is not None and canvas_result.image_data is not None:
             signature_img = signature()
-            pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-            if pdf_stream is not None:
-                binarystream = pdf_stream.getvalue()
-                pdf_viewer(input_file=binarystream, height=800)
-                st.download_button(
-                    label="הורדת טופס",
-                    data=binarystream,
-                    file_name="output.pdf",
-                    mime="application/pdf",
-                )
+            if signature_img is not None:
+                pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
+                if pdf_stream is not None:
+                    binarystream = pdf_stream.getvalue()
+                    pdf_viewer(input_file=binarystream, height=800)
+                    st.download_button(
+                        label="הורדת טופס",
+                        data=binarystream,
+                        file_name="output.pdf",
+                        mime="application/pdf",
+                    )
 
 
 
