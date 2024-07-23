@@ -260,13 +260,13 @@ with st.form(key='table_form', clear_on_submit=True):
     # Create PDF
     if submit_button:
         
-        st.write(f"canvas_result: {canvas_result}")
-        st.write(f"canvas_result.image_data: {canvas_result.image_data}")
         if canvas_result is not None and canvas_result.image_data is not None:
             signature_img = signature()
             accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
             if accept:
                 pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
+                print(pdf_stream)
+                
                 if pdf_stream is not None:
                     binarystream = pdf_stream.getvalue()
                     pdf_viewer(input_file=binarystream, height=800)
