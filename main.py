@@ -209,10 +209,9 @@ def signature(canvas_result):
         im = Image.fromarray(img_data.astype("uint8"), mode="RGBA")
         # Convert to RGB to avoid issues with transparency
         im = im.convert("RGB")
-        buffer = BytesIO()
-        im.save(buffer, format="PNG")
-        buffer.seek(0)
-        return buffer
+        file_path = f"tmp/signature_{uuid.uuid4().hex}.png"
+        im.save(file_path, "PNG")
+        return file_path
 
 
 st.title("טופס בטיחות - MRI")
@@ -334,6 +333,10 @@ with st.form(key='table_form', clear_on_submit=False):
         check = False
         
 if st.session_state.signed:
+    if (st.session_state.signature_img) is not None and isinstance(signature_img, PIL.Image.Image):
+        pdf_stream = create_pdf(fields,(st.session_state.table_data), signature_img=(st.session_state.signature_img))
+    else:
+        st.error("Invalid signature image")
     pdf_stream = create_pdf(fields,(st.session_state.table_data), signature_img=(st.session_state.signature_img))
     binarystream = pdf_stream.getvalue()
     pdf_viewer(input=binarystream, height=800)
