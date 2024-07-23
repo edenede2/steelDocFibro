@@ -364,9 +364,6 @@ if st.session_state.signed:
     accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
 
     if accept:
-        href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
-    
-        st.markdown(href, unsafe_allow_html=True)
         if st.button("שלח טופס"):
             send_email(binarystream)
             st.success("הטופס נשלח בהצלחה")
