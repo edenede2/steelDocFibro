@@ -221,7 +221,7 @@ def signature(canvas_result):
 
 
 
-def send_email(pdf_data, receiver_email):
+def send_email(pdf_data):
     sender_email = 'edenstream988@gmail.com'  # Replace with your sender email
     sender_password = 'aiyh ffqj hgps rwan'  # Replace with your email password or app-specific password
 
