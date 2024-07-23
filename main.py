@@ -227,17 +227,7 @@ questions_list= [
     'האם את בהריון'
 ]
 
-# Create a canvas component
-canvas_result = st_canvas(
-    fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
-    stroke_width=2,
-    stroke_color="#000000",
-    background_color="#FFFFFF",
-    height=150,
-    width=300,
-    drawing_mode="freedraw",
-    key="canvas",
-)
+
 
 with st.form(key='table_form', clear_on_submit=True):
     table_data = []
@@ -255,6 +245,17 @@ with st.form(key='table_form', clear_on_submit=True):
     submit_button = st.form_submit_button("שלח", key='submit_button')
     # Create PDF
     if submit_button:
+        # Create a canvas component
+        canvas_result = st_canvas(
+            fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+            stroke_width=2,
+            stroke_color="#000000",
+            background_color="#FFFFFF",
+            height=150,
+            width=300,
+            drawing_mode="freedraw",
+            key="canvas",
+        )
         if canvas_result is not None and canvas_result.image_data is not None:
             signature_img = signature()
             pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
