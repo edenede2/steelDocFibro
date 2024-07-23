@@ -120,7 +120,7 @@ def create_pdf(fields, table_data, signature_img=None):
     table_data = table_data[13:]
 
     for row in table_data:
-        if ros_counter >= 13 and ros_counter < 29:
+        if ros_counter >= 13 and ros_counter < 31:
             if row['answer'] == 'כן':
                 can.drawString(x_name + 10, y_name - 185, 'X')
             elif row['answer'] == 'לא':
