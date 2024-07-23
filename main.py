@@ -294,6 +294,12 @@ questions_list= [
 if 'signed' not in st.session_state:
     st.session_state.signed = False
 
+if 'signature_img' not in st.session_state:
+    st.session_state.signature_img = None
+
+if 'table_data' not in st.session_state:
+    st.session_state.table_data = []
+
 
 with st.form(key='table_form', clear_on_submit=False):
     table_data = []
@@ -320,11 +326,13 @@ with st.form(key='table_form', clear_on_submit=False):
 
         if check:
             st.session_state.signed = True
+            st.session_state.signature_img = signature_img
+            st.session_state.table_data = table_data
     else:
         check = False
         
 if st.session_state.signed:
-    pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
+    pdf_stream = create_pdf(fields, st.session_state.table_data, signature_img=st.session_state.signature_img)
     binarystream = pdf_stream.getvalue()
     pdf_viewer(input=binarystream, height=800)
 
