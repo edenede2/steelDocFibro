@@ -120,7 +120,7 @@ def create_pdf(fields, table_data, signature_img=None):
     table_data = table_data[13:]
 
     for row in table_data:
-        if ros_counter >= 13 and ros_counter < 28:
+        if ros_counter >= 13 and ros_counter < 29:
             if row['answer'] == 'כן':
                 can.drawString(x_name + 10, y_name - 185, 'X')
             elif row['answer'] == 'לא':
@@ -131,7 +131,36 @@ def create_pdf(fields, table_data, signature_img=None):
             if row['details'] != '':
                 can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-            y_name -= 20
+            if ros_counter == 13:
+                y_name -= 25
+            elif ros_counter == 16:
+                y_name -= 25
+            elif ros_counter == 17:
+                y_name -= 25
+            elif ros_counter == 18:
+                y_name -= 25
+            elif ros_counter == 19:
+                y_name -= 25
+            elif ros_counter == 20:
+                y_name -= 25
+            elif ros_counter == 21:
+                y_name -= 25
+            elif ros_counter == 22:
+                y_name -= 25
+            elif ros_counter == 23:
+                y_name -= 25
+            elif ros_counter == 24:
+                y_name -= 25
+            elif ros_counter == 25:
+                y_name -= 37
+            elif ros_counter == 26:
+                y_name -= 25
+            elif ros_counter == 27:
+                y_name -= 25
+            elif ros_counter == 28:
+                y_name -= 20
+            else:
+                y_name -= 20
             ros_counter += 1
 
     can.showPage()
@@ -139,7 +168,7 @@ def create_pdf(fields, table_data, signature_img=None):
     x_name = 325
     y_name = 430
 
-    table_data = table_data[28:]
+    table_data = table_data[29:]
 
     for row in table_data:
         if ros_counter >= 28:
@@ -153,7 +182,7 @@ def create_pdf(fields, table_data, signature_img=None):
             if row['details'] != '':
                 can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-            y_name -= 20
+            y_name -= 25
             ros_counter += 1
                 
     if signature_img:
