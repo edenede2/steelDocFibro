@@ -70,7 +70,7 @@ st.title("Edit PDF Document")
 # Text fields
 fields = {
     'full_name': st.text_input("שם מלא:"),
-    'dob': st.text_input("תאריך לידה:"),
+    'dob': st.date_input("תאריך לידה:"),
     'height': st.text_input("גובה (מטר):"),
     'weight': st.text_input("משקל (קג):")
 }
