@@ -218,7 +218,7 @@ def signature():
     data = st_canvas(update_streamlit=False, key="png_export")
     if data is not None and data.image_data is not None:
         img_data = data.image_data
-        im = Image.fromarray(img_data.astype("uint8"), mode="RGBA")
+        im = Image.fromarray(img_data.astype("uint8"), mode="RGB")
         im.save(file_path, "PNG")
         return file_path
 
