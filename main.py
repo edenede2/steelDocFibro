@@ -154,9 +154,9 @@ def create_pdf(fields, table_data, signature_img=None):
             elif ros_counter == 25:
                 y_name -= 37
             elif ros_counter == 26:
-                y_name -= 25
+                y_name -= 27
             elif ros_counter == 27:
-                y_name -= 25
+                y_name -= 29
             elif ros_counter == 28:
                 y_name -= 20
             else:
