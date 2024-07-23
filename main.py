@@ -319,6 +319,15 @@ with st.form(key='table_form', clear_on_submit=False):
     # Create PDF
     if submit_button:
         
+        if 'signed' in st.session_state:
+            st.session_state.signed = False
+        
+        if 'signature_img' in st.session_state:
+            st.session_state.signature_img = None
+
+        if 'table_data' in st.session_state:
+            st.session_state.table_data = []
+            
         signature_img = signature()
         
         # Save the signature image
@@ -337,6 +346,7 @@ if st.session_state.signed:
     pdf_viewer(input=binarystream, height=800)
 
     accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
+
     if accept:
         href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
     
