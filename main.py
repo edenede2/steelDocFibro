@@ -203,24 +203,16 @@ def create_pdf(fields, table_data, signature_img=None):
     return output_stream
 
 
-def signature():
-    try:
-        Path("tmp/").mkdir()
-    except FileExistsError:
-        pass
-
-    if st.session_state.get("button_id", "") == "":
-        st.session_state["button_id"] = re.sub("\d+", "", str(uuid.uuid4()).replace("-", ""))
-
-    button_id = st.session_state["button_id"]
-    file_path = f"tmp/{button_id}.png"
-
-    data = st_canvas(update_streamlit=False, key="png_export")
-    if data is not None and data.image_data is not None:
-        img_data = data.image_data
-        im = Image.fromarray(img_data.astype("uint8"), mode="RGB")
-        im.save(file_path, "PNG")
-        return file_path
+def signature(canvas_result):
+    if canvas_result.image_data is not None:
+        img_data = canvas_result.image_data
+        im = Image.fromarray(img_data.astype("uint8"), mode="RGBA")
+        # Convert to RGB to avoid issues with transparency
+        im = im.convert("RGB")
+        buffer = BytesIO()
+        im.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer
 
 
 st.title("טופס בטיחות - MRI")
@@ -328,7 +320,7 @@ with st.form(key='table_form', clear_on_submit=False):
         if 'table_data' in st.session_state:
             st.session_state.table_data = []
             
-        signature_img = signature()
+        signature_img = signature(st_canvas(update_streamlit=False, key="canvas"))
         
         # Save the signature image
         check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
