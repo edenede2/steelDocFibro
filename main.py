@@ -314,7 +314,7 @@ with st.form(key='table_form', clear_on_submit=False):
         signature_img = signature()
         
         # Save the signature image
-        saved = st.button("שמור חתימה")
+        check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
     else:
         saved = False
         
