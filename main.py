@@ -227,7 +227,17 @@ questions_list= [
     'האם את בהריון'
 ]
 
-
+# Create a canvas component
+canvas_result = st_canvas(
+    fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+    stroke_width=2,
+    stroke_color="#000000",
+    background_color="#FFFFFF",
+    height=150,
+    width=300,
+    drawing_mode="freedraw",
+    key="canvas",
+)
 
 with st.form(key='table_form', clear_on_submit=True):
     table_data = []
@@ -243,35 +253,27 @@ with st.form(key='table_form', clear_on_submit=True):
 
         table_data.append(row)
     submit_button = st.form_submit_button("שלח", key='submit_button')
+    # Create PDF
+    if submit_button:
+        if canvas_result is not None and canvas_result.image_data is not None:
+            signature_img = signature()
+            pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
+            if pdf_stream is not None:
+                binarystream = pdf_stream.getvalue()
+                pdf_viewer(input_file=binarystream, height=800)
+                st.download_button(
+                    label="הורדת טופס",
+                    data=binarystream,
+                    file_name="output.pdf",
+                    mime="application/pdf",
+                )
 
 
 
-# Create a canvas component
-canvas_result = st_canvas(
-    fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
-    stroke_width=2,
-    stroke_color="#000000",
-    background_color="#FFFFFF",
-    height=150,
-    width=300,
-    drawing_mode="freedraw",
-    key="canvas",
-)
 
 
-# Create PDF
-if submit_button:
-    if canvas_result is not None and canvas_result.image_data is not None:
-        signature_img = signature()
-        pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-        if pdf_stream is not None:
-            binarystream = pdf_stream.getvalue()
-            pdf_viewer(input_file=binarystream, height=800)
-            st.download_button(
-                label="הורדת טופס",
-                data=binarystream,
-                file_name="output.pdf",
-                mime="application/pdf",
-            )
+
+
+
 
         
