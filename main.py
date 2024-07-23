@@ -242,7 +242,7 @@ with st.form(key='table_form', clear_on_submit=True):
         }
 
         table_data.append(row)
-    submit_button = st.form_submit_button("שלח", key='submit_button')
+    submit_button = st.form_submit_button("שלח")
     # Create PDF
     if submit_button:
         # Create a canvas component
