@@ -265,7 +265,7 @@ with st.form(key='table_form', clear_on_submit=True):
             accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
             if accept:
                 pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-                print(pdf_stream)
+                st.write(pdf_stream)
                 
                 if pdf_stream is not None:
                     binarystream = pdf_stream.getvalue()
