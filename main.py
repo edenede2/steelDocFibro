@@ -221,10 +221,22 @@ def signature(canvas_result):
 
 
 
-def send_email(pdf_data, full_name):
+def send_email(pdf_data, full_name, id, address, dob):
     sender_email = 'edenstream988@gmail.com'  # Replace with your sender email
     sender_password = 'aiyh ffqj hgps rwan'  # Replace with your email password or app-specific password
 
+    msg_cont =f"""
+
+טופס מתכות למחקר פיברומיאלגיה
+    
+טופס מתכות של {full_name}
+
+תאריך לידה {dob}
+
+תעודת זהות {id}
+
+כתובת מגורים {address}
+    """
     msg = EmailMessage()
     msg['Subject'] = f'טופס מתכות של {full_name}'
     msg['From'] = sender_email
@@ -260,7 +272,9 @@ fields = {
     'full_name': st.text_input("שם מלא:"),
     'dob': st.date_input("תאריך לידה:", value=None, min_value=min_date),
     'height': st.text_input("גובה (מטר):"),
-    'weight': st.text_input("משקל (קג):")
+    'weight': st.text_input("משקל (קג):"),
+    'Id_num': st.text_input("מספר תעודת זהות:"),
+    'address': st.text_input("כתובת מגורים מלאה:"),
 }
 
 # Label of instructions before the table
@@ -368,7 +382,7 @@ if st.session_state.signed:
 
     if accept:
         if st.button("שלח טופס"):
-            send_email(binarystream, fields['full_name'])
+            send_email(binarystream, fields['full_name'], fields["Id_num"], fields["address"], fields["dob"])
             st.success("הטופס נשלח בהצלחה")
     else:
         st.write("אנא אשר את ההצהרה")
