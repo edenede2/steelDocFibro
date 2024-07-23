@@ -277,6 +277,8 @@ fields = {
     'address': st.text_input("כתובת מגורים מלאה:"),
 }
 
+st.divider()
+
 # Label of instructions before the table
 st.write("בבקשה לקרוא את הטופס בעיון ולענות על כל הסעיפים")
 st.write("""
@@ -288,6 +290,8 @@ st.write("""
 שאין בתוך גופך או על גופך כל מתכת – בכדי שהימצאותך בשדה המגנטי לא תסכן את בריאותך.
 """
 )
+
+st.divider()
 
 questions_list= [
     'קוצב לב',
@@ -344,6 +348,7 @@ with st.form(key='table_form', clear_on_submit=False):
             'answer': st.radio("", options=['כן', 'לא', 'לא יודע/ת'], key=f"answer_{i}"),
             'details': st.text_input("אם כן / לא יודע/ת הוסיפו פרטים + תאריך של האירוע",max_chars= 48,key=f"details_lab_{i}"),
         }
+        st.divider()
 
         table_data.append(row)
     
