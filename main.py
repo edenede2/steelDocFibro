@@ -291,6 +291,8 @@ questions_list= [
 ]
 
 
+if 'signed' not in st.session_state:
+    st.session_state.signed = False
 
 
 with st.form(key='table_form', clear_on_submit=False):
@@ -315,10 +317,13 @@ with st.form(key='table_form', clear_on_submit=False):
         
         # Save the signature image
         check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
+
+        if check:
+            st.session_state.signed = True
     else:
         check = False
         
-if check:
+if st.session_state.signed:
     pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
     binarystream = pdf_stream.getvalue()
     pdf_viewer(input=binarystream, height=800)
