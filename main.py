@@ -206,9 +206,9 @@ def create_pdf(fields, table_data, signature_img=None):
 def signature(canvas_result):
     if canvas_result.image_data is not None:
         img_data = canvas_result.image_data
-        im = Image.fromarray(img_data.astype("uint8"), mode="RGB")
+        im = Image.fromarray(img_data.astype("uint8"), mode="RGBA")
         # Convert to RGB to avoid issues with transparency
-        im = im.convert("RGB")
+        # im = im.convert("RGB")
         file_path = f"tmp/signature_{uuid.uuid4().hex}.png"
         im.save(file_path, "PNG")
         return file_path
