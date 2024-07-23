@@ -168,7 +168,10 @@ def create_pdf(fields, table_data, signature_img=None):
     
                 
     if signature_img:
-        can.drawImage(signature_img, 80, 50, width=100, height=50)
+        try:
+            can.drawImage(signature_img, 80, 50, width=100, height=50, mask='auto')
+        except Exception as e:
+            st.write(f"Error drawing image: {e}")
 
 
     can.save()
