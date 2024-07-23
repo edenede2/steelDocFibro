@@ -298,7 +298,7 @@ with st.form(key='table_form', clear_on_submit=True):
     if submit_button:
         
         signature_img = signature()
-        show = st.button("הצג טופס")
+        show = st.checkbox("הצג טופס")
         if show:
             pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
             st.write(pdf_stream)
