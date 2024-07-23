@@ -332,6 +332,7 @@ with st.form(key='table_form', clear_on_submit=False):
         
         # Save the signature image
         check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
+        st.write("לאחר אישור לחץ שוב על הכפתור שמור")
 
         if check:
             st.session_state.signed = True
