@@ -14,7 +14,8 @@ from PIL import Image
 import base64
 import os
 import uuid
-
+import smtplib
+from email.message import EmailMessage
 
 # Load the PDF
 pdf_path = 'doc.pdf'
@@ -219,6 +220,25 @@ def signature(canvas_result):
         return file_path
 
 
+
+def send_email(pdf_data, receiver_email):
+    sender_email = 'edenstream988@gmail.com'  # Replace with your sender email
+    sender_password = 'aiyh ffqj hgps rwan'  # Replace with your email password or app-specific password
+
+    msg = EmailMessage()
+    msg['Subject'] = 'MRI Safety Form Submission'
+    msg['From'] = sender_email
+
+    msg['To'] = 'admon_fibro@labs.hevra.haifa.ac.il'
+    msg.set_content('MRI Safety Form Submission')
+
+    msg.add_attachment(pdf_data, maintype='application', subtype='pdf', filename='output.pdf')
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+
+
 st.title("טופס בטיחות - MRI")
 
 st.subheader("סודי רפואי")
@@ -347,6 +367,9 @@ if st.session_state.signed:
         href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
     
         st.markdown(href, unsafe_allow_html=True)
+        if st.button("שלח טופס"):
+            send_email(binarystream)
+            st.success("הטופס נשלח בהצלחה")
     else:
         st.write("אנא אשר את ההצהרה")
 
