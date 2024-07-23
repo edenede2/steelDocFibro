@@ -308,7 +308,7 @@ questions_list= [
 
 
 
-with st.form(key='table_form', clear_on_submit=True):
+with st.form(key='table_form', clear_on_submit=False):
     table_data = []
     st.write("""ציין האם יש בתוך/על גופך את הפרטים הבאים:""", key='table_label')
     for i in range(len(questions_list)):
