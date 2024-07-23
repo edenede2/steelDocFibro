@@ -48,7 +48,7 @@ def create_pdf(fields, table_data, signature_img=None):
 
     # Fill table (adjust coordinates as needed)
     for row in table_data:
-        if ros_counter < 12:
+        if ros_counter < 13:
             if ros_counter == 3:
                 if row['answer'] == 'כן':
                     can.drawString(x_name + 10, y_name - 185, 'X')
@@ -117,10 +117,10 @@ def create_pdf(fields, table_data, signature_img=None):
     x_name = 325
     y_name = 900
 
-    table_data = table_data[12:]
+    table_data = table_data[13:]
 
     for row in table_data:
-        if ros_counter >= 12 and ros_counter < 28:
+        if ros_counter >= 13 and ros_counter < 28:
             if row['answer'] == 'כן':
                 can.drawString(x_name + 10, y_name - 185, 'X')
             elif row['answer'] == 'לא':
