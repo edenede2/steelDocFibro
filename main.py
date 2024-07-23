@@ -269,7 +269,7 @@ with st.form(key='table_form', clear_on_submit=True):
                 
                 if pdf_stream is not None:
                     binarystream = pdf_stream.getvalue()
-                    pdf_viewer(input_file=binarystream, height=800)
+                    pdf_viewer(input=binarystream, height=800)
                     st.download_button(
                         label="הורדת טופס",
                         data=binarystream,
