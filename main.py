@@ -158,7 +158,7 @@ def create_pdf(fields, table_data, signature_img=None):
             elif ros_counter == 27:
                 y_name -= 29
             elif ros_counter == 28:
-                y_name -= 47
+                y_name -= 48
             elif ros_counter == 29:
                 y_name -= 29
             else:
@@ -168,7 +168,7 @@ def create_pdf(fields, table_data, signature_img=None):
     
                 
     if signature_img:
-        can.drawImage(signature_img, 50, 50, width=100, height=50)
+        can.drawImage(signature_img, 80, 50, width=100, height=50)
 
 
     can.save()
