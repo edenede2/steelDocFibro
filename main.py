@@ -69,23 +69,13 @@ def create_pdf(fields, table_data):
 
 st.title("Edit PDF Document")
 
-<<<<<<< HEAD
 # Min value for the date input field in datetime date format
 # min_date = datetime.date(1930, 1, 1)
 
-=======
-# Min value for the date input field in datetime date format
-min_date = datetime.date(1930, 1, 1)
-
->>>>>>> c9f108e0bbd7e4b2829cfac29029d9ca9f8515b5
 # Text fields
 fields = {
     'full_name': st.text_input("שם מלא:"),
-<<<<<<< HEAD
     'dob': st.date_input("תאריך לידה:", value=None, min_value=-70),
-=======
-    'dob': st.date_input("תאריך לידה:", value=None, min_value=min_date),
->>>>>>> c9f108e0bbd7e4b2829cfac29029d9ca9f8515b5
     'height': st.text_input("גובה (מטר):"),
     'weight': st.text_input("משקל (קג):")
 }
