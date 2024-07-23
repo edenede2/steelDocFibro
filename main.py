@@ -231,9 +231,7 @@ questions_list= [
 
 with st.form("table_form", key='table_form'):
     table_data = []
-    st.write("""
-ציין האם יש בתוך/על גופך את הפרטים הבאים:
-    """)
+    st.write("""ציין האם יש בתוך/על גופך את הפרטים הבאים:""", key='table_label')
     for i in range(len(questions_list)):
         row = {
             'question_obj': st.write(questions_list[i]),
