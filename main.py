@@ -49,17 +49,30 @@ def create_pdf(fields, table_data, signature_img=None):
     # Fill table (adjust coordinates as needed)
     for row in table_data:
         if ros_counter < 12:
-            if row['answer'] == 'כן':
-                can.drawString(x_name + 10, y_name - 185, 'X')
-            elif row['answer'] == 'לא':
-                can.drawString(x_name + 30, y_name - 185, 'X')
-            elif row['answer'] == 'לא יודע/ת':
-                can.drawString(x_name - 10, y_name - 185, 'X')
-            
-            if row['details'] != '':
-                can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+            if ros_counter == 3:
+                if row['answer'] == 'כן':
+                    can.drawString(x_name + 10, y_name - 185, 'X')
+                elif row['answer'] == 'לא':
+                    can.drawString(x_name + 30, y_name - 185, 'X')
+                elif row['answer'] == 'לא יודע/ת':
+                    can.drawString(x_name - 10, y_name - 185, 'X')
 
-            y_name -= 20
+                if row['details'] != '':
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+
+                y_name -= 25
+            else:
+                if row['answer'] == 'כן':
+                    can.drawString(x_name + 10, y_name - 185, 'X')
+                elif row['answer'] == 'לא':
+                    can.drawString(x_name + 30, y_name - 185, 'X')
+                elif row['answer'] == 'לא יודע/ת':
+                    can.drawString(x_name - 10, y_name - 185, 'X')
+
+                if row['details'] != '':
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    
+                y_name -= 20
             ros_counter += 1
 
     can.showPage()
