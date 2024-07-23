@@ -306,26 +306,34 @@ with st.form(key='table_form', clear_on_submit=False):
         }
 
         table_data.append(row)
-    submit_button = st.form_submit_button("סיום")
+    
+    submit_button = st.form_submit_button("שמור")
     # Create PDF
     if submit_button:
         
         signature_img = signature()
-        show = st.checkbox("הצג טופס")
-    
-    
+        
+        # Save the signature image
+        saved = st.button("שמור חתימה", key="save_signature")
+        
+        
+    if saved:
         pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-        # st.write(pdf_stream)
-        if pdf_stream is not None:
-            binarystream = pdf_stream.getvalue()
-            pdf_viewer(input=binarystream, height=800)
-            accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
-            if accept:
-                href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
-            
-                st.markdown(href, unsafe_allow_html=True)
-            else:
-                st.write("אנא אשר את ההצהרה")
+        binarystream = pdf_stream.getvalue()
+        pdf_viewer(input=binarystream, height=800)
+
+        accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
+        if accept:
+            href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
+        
+            st.markdown(href, unsafe_allow_html=True)
+        else:
+            st.write("אנא אשר את ההצהרה")
+
+    
+    else:
+        st.write("אנא אשר את ההצהרה")
+        
 
 
 
