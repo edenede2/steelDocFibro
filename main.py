@@ -272,7 +272,7 @@ with st.form(key='table_form', clear_on_submit=True):
                     pdf_viewer(input=binarystream, height=800)
                     st.download_button(
                         label="הורדת טופס",
-                        data=binarystream,
+                        data=pdf_stream,
                         file_name="output.pdf",
                         mime="application/pdf",
                         key="download_pdf",
