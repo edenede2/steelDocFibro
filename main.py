@@ -84,7 +84,7 @@ def create_pdf(fields, table_data, signature_img=None):
                 if row['details'] != '':
                     can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-                y_name -= 40
+                y_name -= 42
 
             elif ros_counter == 10:
                 if row['answer'] == 'כן':
@@ -97,7 +97,7 @@ def create_pdf(fields, table_data, signature_img=None):
                 if row['details'] != '':
                     can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-                y_name -= 40
+                y_name -= 42
             else:
                 if row['answer'] == 'כן':
                     can.drawString(x_name + 10, y_name - 185, 'X')
@@ -301,7 +301,7 @@ with st.form(key='table_form', clear_on_submit=True):
         show = st.checkbox("הצג טופס")
         if show:
             pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-            st.write(pdf_stream)
+            # st.write(pdf_stream)
             if pdf_stream is not None:
                 binarystream = pdf_stream.getvalue()
                 pdf_viewer(input=binarystream, height=800)
