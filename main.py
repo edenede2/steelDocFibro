@@ -320,7 +320,7 @@ with st.form(key='table_form', clear_on_submit=False):
         if 'table_data' in st.session_state:
             st.session_state.table_data = []
             
-        signature_img = signature(st_canvas(update_streamlit=False, key="canvas"))
+        signature_img = signature(st_canvas(update_streamlit=True, key="canvas"))
         
         # Save the signature image
         check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
