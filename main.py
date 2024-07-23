@@ -221,12 +221,12 @@ def signature(canvas_result):
 
 
 
-def send_email(pdf_data):
+def send_email(pdf_data, full_name):
     sender_email = 'edenstream988@gmail.com'  # Replace with your sender email
     sender_password = 'aiyh ffqj hgps rwan'  # Replace with your email password or app-specific password
 
     msg = EmailMessage()
-    msg['Subject'] = 'MRI Safety Form Submission'
+    msg['Subject'] = f'טופס מתכות של {full_name}'
     msg['From'] = sender_email
 
     msg['To'] = 'admon_fibro@labs.hevra.haifa.ac.il'
@@ -298,8 +298,11 @@ questions_list= [
     'האם עבדת עם מתכת ללא הגנה על העיניים',
     'האם מתכת אי פעם נכנסה לך לעין',
     'האם יש לך בגדים מבדים אנטי בקטריאליים',
-    'בעבר (ציין תאריך, מטרה, מכון) MRI האם עברת/ה סריקת',
-    'האם עברת/ה סריקת MRI בעבר (ציין תאריך, מטרה, מכון) ',
+    """
+האם עברת/ה סריקת
+MRI 
+בעבר (ציין תאריך, מטרה, מכון) 
+    """,
     'האם יש עליך או בתוכך אביזר ממתכת',
     'האם את/ה סובל מקלסטרופוביה',
     'האם יש לך משקפיים',
@@ -366,7 +369,7 @@ if st.session_state.signed:
 
     if accept:
         if st.button("שלח טופס"):
-            send_email(binarystream)
+            send_email(binarystream, fields['full_name'])
             st.success("הטופס נשלח בהצלחה")
     else:
         st.write("אנא אשר את ההצהרה")
