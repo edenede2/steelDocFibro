@@ -120,7 +120,7 @@ def create_pdf(fields, table_data, signature_img=None):
     table_data = table_data[13:]
 
     for row in table_data:
-        if ros_counter >= 13 and ros_counter < 31:
+        if ros_counter >= 13:
             if row['answer'] == 'כן':
                 can.drawString(x_name + 10, y_name - 185, 'X')
             elif row['answer'] == 'לא':
@@ -158,29 +158,14 @@ def create_pdf(fields, table_data, signature_img=None):
             elif ros_counter == 27:
                 y_name -= 29
             elif ros_counter == 28:
-                y_name -= 20
+                y_name -= 37
+            elif ros_counter == 29:
+                y_name -= 29
             else:
                 y_name -= 20
             ros_counter += 1
 
     
-
-    table_data = table_data[29:]
-
-    for row in table_data:
-        if ros_counter >= 28:
-            if row['answer'] == 'כן':
-                can.drawString(x_name + 10, y_name - 185, 'X')
-            elif row['answer'] == 'לא':
-                can.drawString(x_name + 30, y_name - 185, 'X')
-            elif row['answer'] == 'לא יודע/ת':
-                can.drawString(x_name - 10, y_name - 185, 'X')
-
-            if row['details'] != '':
-                can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
-
-            y_name -= 25
-            ros_counter += 1
                 
     if signature_img:
         can.drawImage(signature_img, 50, 50, width=100, height=50)
