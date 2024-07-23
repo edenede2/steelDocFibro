@@ -166,11 +166,12 @@ def create_pdf(fields, table_data, signature_img=None):
             ros_counter += 1
 
     
-                
+    now_date = datetime.datetime.now().strftime("%d/%m/%Y")
+
     if signature_img:
         try:
             can.drawImage(signature_img, 350, 135, width=70, height=40, mask=[0,255,255,255,255,255])
-            can.drawString(200, 150, "חתימה")
+            can.drawString(200, 150, now_date)
         except Exception as e:
             st.write(f"Error drawing image: {e}")
 
