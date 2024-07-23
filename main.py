@@ -10,6 +10,9 @@ from io import BytesIO
 pdf_path = 'doc.pdf'
 font_path = "OpenSans-VariableFont_wdth,wght.ttf"  # Adjust this to the path of your font file
 
+def reversing_chars(s):
+    return s[::-1]
+
 def create_pdf(fields, table_data):
     packet = BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
@@ -21,19 +24,20 @@ def create_pdf(fields, table_data):
 
     # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
     # Example coordinates, you might need to adjust based on exact needs
-    x_name = 300  # Adjust this value as needed
-    y_name = 300  # Adjust this value as needed
+    x_name = 325  # Adjust this value as needed
+    y_name = 568  # Adjust this value as needed
 
     # Fill text fields (adjust coordinates as needed)
-    can.drawString(x_name, y_name, f"שם מלא: {fields['full_name']}")
-    can.drawString(x_name, y_name - 20, f"תאריך לידה: {fields['dob']}")
-    can.drawString(x_name, y_name - 40, f"גובה: {fields['height']} מטר")
-    can.drawString(x_name, y_name - 60, f"משקל: {fields['weight']} קג")
+    can.drawString(x_name, y_name, f"{reversing_chars(fields['full_name'])}")
+    can.drawString(x_name-230, y_name, f"{fields['dob']}")
+    can.drawString(x_name, y_name - 28, f"{fields['height']}")
+    can.drawString(x_name-230, y_name - 28, f"{fields['weight']}")
     
+
     # Fill table (adjust coordinates as needed)
-    start_y = y_name - 100  # Adjust the start position
     for row in table_data:
-        can.drawString(x_name, start_y, row['question'])
+        if row['answer']:
+            can.drawString(x_name + 100, y_name - 185, 'X')
         can.drawString(x_name + 200, start_y, 'כן' if row['answer'] else 'לא')
         if not row['answer']:
             can.drawString(x_name + 300, start_y, row['details'])
