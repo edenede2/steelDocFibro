@@ -232,7 +232,10 @@ def send_email(pdf_data, full_name):
     msg['To'] = 'admon_fibro@labs.hevra.haifa.ac.il'
     msg.set_content('MRI Safety Form Submission From Some subject...')
 
-    msg.add_attachment(pdf_data, maintype='application', subtype='pdf', filename='output.pdf')
+    file_name = f'טופס מתכות של {full_name}'
+    file_name = file_name + '.pdf'
+
+    msg.add_attachment(pdf_data, maintype='application', subtype='pdf', filename=file_name)
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(sender_email, sender_password)
