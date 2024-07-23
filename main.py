@@ -71,6 +71,14 @@ def create_pdf(fields, table_data):
 
 st.title("טופס בטיחות - MRI")
 
+st.subheader("סודי רפואי")
+
+st.write("""
+המידע הכלול במסמך זה מוגן על פי חוק זכויות החולה, התשנ’’ו –1966 וחוק הגנת הפרטיות, תשמ’’א –1981. אין  
+למסור את המידע ו/או תוכן המידע ו/או פרט שהו מהמידע לכל אדם ואו גוף אלא בהתאם להוראות החוק. מסירת המידע  
+בניגוד לקבוע בחוקים אלה, מהווה עבורה.  
+         """)
+
 # Min value for the date input field in datetime date format
 min_date = datetime.date(1930, 1, 1)
 
