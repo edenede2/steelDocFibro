@@ -36,14 +36,7 @@ def create_pdf(fields, table_data):
     can.drawString(x_name-230, y_name - 28, f"{fields['weight']}")
     
 
-    # Label of instructions before the table
-    st.write(reversing_chars("בבקשה לקרוא את הטופס בעיון ולענות על כל הסעיפים"))
-    st.write(reversing_chars("""
-באזור מכשיר ה IRM פועל שדה מגנטי חזק 3T (פי שניים ממגנט טיפוסי במגרש גרוטאות). השדה 
-המגנטי אינו משפיע על רקמות ביולוגיות, אבל מאוד משפיע על מתכות. מטרת השאלות היא לוודא 
-שאין בתוך גופך או על גופך כל מתכת – בכדי שהימצאותך בשדה המגנטי לא תסכן את בריאותך.
-"""
-    ))
+    
 
     # Fill table (adjust coordinates as needed)
     for row in table_data:
@@ -88,6 +81,16 @@ fields = {
     'height': st.text_input("גובה (מטר):"),
     'weight': st.text_input("משקל (קג):")
 }
+
+# Label of instructions before the table
+st.write(reversing_chars("בבקשה לקרוא את הטופס בעיון ולענות על כל הסעיפים"))
+st.write(reversing_chars("""
+באזור מכשיר ה IRM פועל שדה מגנטי חזק 3T (פי שניים ממגנט טיפוסי במגרש גרוטאות). השדה 
+המגנטי אינו משפיע על רקמות ביולוגיות, אבל מאוד משפיע על מתכות. מטרת השאלות היא לוודא 
+שאין בתוך גופך או על גופך כל מתכת – בכדי שהימצאותך בשדה המגנטי לא תסכן את בריאותך.
+"""
+))
+
 
 # Table data
 table_data = [
