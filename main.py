@@ -84,7 +84,7 @@ def create_pdf(fields, table_data, signature_img=None):
                 if row['details'] != '':
                     can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-                y_name -= 33
+                y_name -= 38
 
             elif ros_counter == 10:
                 if row['answer'] == 'כן':
