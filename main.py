@@ -163,8 +163,6 @@ def create_pdf(fields, table_data, signature_img=None):
                 y_name -= 20
             ros_counter += 1
 
-    can.showPage()
-
     x_name = 325
     y_name = 430
 
