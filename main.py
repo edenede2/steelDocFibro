@@ -315,7 +315,8 @@ with st.form(key='table_form', clear_on_submit=False):
         
         # Save the signature image
         saved = st.button("שמור חתימה", key="save_signature")
-        
+    else:
+        saved = False
         
     if saved:
         pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
