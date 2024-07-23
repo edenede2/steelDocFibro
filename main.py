@@ -333,10 +333,6 @@ with st.form(key='table_form', clear_on_submit=False):
         check = False
         
 if st.session_state.signed:
-    if (st.session_state.signature_img) is not None and isinstance(signature_img, PIL.Image.Image):
-        pdf_stream = create_pdf(fields,(st.session_state.table_data), signature_img=(st.session_state.signature_img))
-    else:
-        st.error("Invalid signature image")
     pdf_stream = create_pdf(fields,(st.session_state.table_data), signature_img=(st.session_state.signature_img))
     binarystream = pdf_stream.getvalue()
     pdf_viewer(input=binarystream, height=800)
