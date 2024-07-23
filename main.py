@@ -6,17 +6,14 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter
 from io import BytesIO
 import datetime
-import pandas as pd
 from pathlib import Path
-import time
 from streamlit_drawable_canvas import st_canvas
 from streamlit_pdf_viewer import pdf_viewer
 import re
 from PIL import Image
 import base64
-
 import os
-
+import uuid
 
 
 # Load the PDF
@@ -278,5 +275,5 @@ if submit_button:
                 file_name="output.pdf",
                 mime="application/pdf",
             )
-            
+
         

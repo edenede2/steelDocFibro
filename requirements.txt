@@ -2,5 +2,5 @@ streamlit
 PyPDF2
 reportlab
 streamlit-drawable-canvas
-PIL
+Pillow
 streamlit_pdf_viewer
