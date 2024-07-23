@@ -230,7 +230,7 @@ def send_email(pdf_data):
     msg['From'] = sender_email
 
     msg['To'] = 'admon_fibro@labs.hevra.haifa.ac.il'
-    msg.set_content('MRI Safety Form Submission')
+    msg.set_content('MRI Safety Form Submission From Some subject...')
 
     msg.add_attachment(pdf_data, maintype='application', subtype='pdf', filename='output.pdf')
 
