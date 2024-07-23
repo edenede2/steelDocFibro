@@ -275,6 +275,7 @@ with st.form(key='table_form', clear_on_submit=True):
                         data=binarystream,
                         file_name="output.pdf",
                         mime="application/pdf",
+                        key="download_pdf",
                     )
 
 
