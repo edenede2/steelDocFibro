@@ -270,13 +270,11 @@ with st.form(key='table_form', clear_on_submit=True):
                 if pdf_stream is not None:
                     binarystream = pdf_stream.getvalue()
                     pdf_viewer(input=binarystream, height=800)
-                    st.download_button(
-                        label="הורדת טופס",
-                        data=pdf_stream,
-                        file_name="output.pdf",
-                        mime="application/pdf",
-                        key="download_pdf",
-                    )
+                    href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
+                    
+                    st.markdown(href, unsafe_allow_html=True)
+            else:
+                st.write("אנא אשר את ההצהרה")
 
 
 
