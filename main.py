@@ -72,7 +72,32 @@ def create_pdf(fields, table_data, signature_img=None):
                 if row['details'] != '':
                     can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
 
-                y_name -= 27
+                y_name -= 30
+            elif ros_counter == 9:
+                if row['answer'] == 'כן':
+                    can.drawString(x_name + 10, y_name - 185, 'X')
+                elif row['answer'] == 'לא':
+                    can.drawString(x_name + 30, y_name - 185, 'X')
+                elif row['answer'] == 'לא יודע/ת':
+                    can.drawString(x_name - 10, y_name - 185, 'X')
+
+                if row['details'] != '':
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+
+                y_name -= 30
+
+            elif ros_counter == 10:
+                if row['answer'] == 'כן':
+                    can.drawString(x_name + 10, y_name - 185, 'X')
+                elif row['answer'] == 'לא':
+                    can.drawString(x_name + 30, y_name - 185, 'X')
+                elif row['answer'] == 'לא יודע/ת':
+                    can.drawString(x_name - 10, y_name - 185, 'X')
+
+                if row['details'] != '':
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+
+                y_name -= 34
             else:
                 if row['answer'] == 'כן':
                     can.drawString(x_name + 10, y_name - 185, 'X')
