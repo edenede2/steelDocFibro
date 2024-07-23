@@ -5,7 +5,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib.pagesizes import letter
 from io import BytesIO
-from datetime import datetime
+import datetime
 
 
 # Load the PDF
@@ -70,12 +70,12 @@ def create_pdf(fields, table_data):
 st.title("Edit PDF Document")
 
 # Min value for the date input field in datetime date format
-# min_date = datetime.date(1930, 1, 1)
+min_date = datetime.date(1930, 1, 1)
 
 # Text fields
 fields = {
     'full_name': st.text_input("שם מלא:"),
-    'dob': st.date_input("תאריך לידה:", value=None, min_value=(1930, 1, 1)),
+    'dob': st.date_input("תאריך לידה:", value=None, min_value=min_date),
     'height': st.text_input("גובה (מטר):"),
     'weight': st.text_input("משקל (קג):")
 }
