@@ -242,7 +242,7 @@ def send_email(pdf_data, full_name, id, address, dob):
     msg['From'] = sender_email
 
     msg['To'] = 'admon_fibro@labs.hevra.haifa.ac.il'
-    msg.set_content('MRI Safety Form Submission From Some subject...')
+    msg.set_content(msg_cont)
 
     file_name = f'טופס מתכות של {full_name}'
     file_name = file_name + '.pdf'
