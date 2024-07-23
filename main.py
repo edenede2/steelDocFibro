@@ -256,6 +256,8 @@ with st.form(key='table_form', clear_on_submit=True):
             drawing_mode="freedraw",
             key="canvas",
         )
+        st.write(f"canvas_result: {canvas_result}")
+        st.write(f"canvas_result.image_data: {canvas_result.image_data}")
         if canvas_result is not None and canvas_result.image_data is not None:
             signature_img = signature()
             accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
