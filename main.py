@@ -316,9 +316,9 @@ with st.form(key='table_form', clear_on_submit=False):
         # Save the signature image
         check = st.checkbox("אני מאשר/ת שהמידע נכון ומדוייק")
     else:
-        saved = False
+        check = False
         
-    if saved:
+    if check:
         pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
         binarystream = pdf_stream.getvalue()
         pdf_viewer(input=binarystream, height=800)
