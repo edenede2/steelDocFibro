@@ -114,8 +114,7 @@ def create_pdf(fields, table_data, signature_img=None):
 
     can.showPage()
 
-    x_name = 325
-    y_name = 900
+
 
     table_data = table_data[13:]
 
@@ -277,6 +276,8 @@ questions_list= [
     'מסתם לב מלאכותי',
     'שנט במערכת העצבים/אחר',
     'סיכות מתכתיות לאחר ניתוח מפרצת ראש',
+    'שתל כוכליארי באוזן',
+    'מכשירי שמיעה',
     '(neurostimulator) מגרי עצבים',
     'כתר מתכת/גשר',
     'רסיס מתכת (לאחר פציעה)',
