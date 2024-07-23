@@ -58,7 +58,7 @@ def create_pdf(fields, table_data, signature_img=None):
                     can.drawString(x_name - 10, y_name - 185, 'X')
 
                 if row['details'] != '':
-                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
 
                 y_name -= 25
             elif ros_counter == 6:
@@ -70,7 +70,7 @@ def create_pdf(fields, table_data, signature_img=None):
                     can.drawString(x_name - 10, y_name - 185, 'X')
 
                 if row['details'] != '':
-                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
 
                 y_name -= 30
             elif ros_counter == 9:
@@ -82,7 +82,7 @@ def create_pdf(fields, table_data, signature_img=None):
                     can.drawString(x_name - 10, y_name - 185, 'X')
 
                 if row['details'] != '':
-                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
 
                 y_name -= 42
 
@@ -95,7 +95,7 @@ def create_pdf(fields, table_data, signature_img=None):
                     can.drawString(x_name - 10, y_name - 185, 'X')
 
                 if row['details'] != '':
-                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
 
                 y_name -= 42
             else:
@@ -107,7 +107,7 @@ def create_pdf(fields, table_data, signature_img=None):
                     can.drawString(x_name - 10, y_name - 185, 'X')
 
                 if row['details'] != '':
-                    can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                    can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
                     
                 y_name -= 20
             ros_counter += 1
@@ -129,7 +129,7 @@ def create_pdf(fields, table_data, signature_img=None):
                 can.drawString(x_name - 10, y_name - 185, 'X')
 
             if row['details'] != '':
-                can.drawString(x_name - 250, y_name - 185, reversing_chars(row['details']))
+                can.drawString(x_name - 250, y_name - 185, reversing_chars(f'{row['details']}'))
 
             if ros_counter == 13:
                 y_name -= 25
