@@ -252,21 +252,8 @@ questions_list= [
     'האם את בהריון'
 ]
 
-# Create a canvas component
-canvas_result = st_canvas(
-    fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
-    stroke_width=2,
-    stroke_color="#000000",
-    background_color="#FFFFFF",
-    height=150,
-    width=300,
-    drawing_mode="freedraw",
-    key="canvas",
-)
 
 
-st.write(f"canvas_result: {canvas_result}")
-st.write(f"canvas_result.image_data: {canvas_result.image_data}")
 
 with st.form(key='table_form', clear_on_submit=True):
     table_data = []
@@ -285,21 +272,20 @@ with st.form(key='table_form', clear_on_submit=True):
     # Create PDF
     if submit_button:
         
-        if canvas_result is not None and canvas_result.image_data is not None:
-            signature_img = signature()
-            accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
-            if accept:
-                pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
-                st.write(pdf_stream)
+        signature_img = signature()
+        accept = st.checkbox("אני החתום מטה מצהיר שהמידע בטופס נכון ומדוייק.")
+        if accept:
+            pdf_stream = create_pdf(fields, table_data, signature_img=signature_img)
+            st.write(pdf_stream)
+            
+            if pdf_stream is not None:
+                binarystream = pdf_stream.getvalue()
+                pdf_viewer(input=binarystream, height=800)
+                href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
                 
-                if pdf_stream is not None:
-                    binarystream = pdf_stream.getvalue()
-                    pdf_viewer(input=binarystream, height=800)
-                    href = f'<a href="data:file/pdf;base64,{base64.b64encode(binarystream).decode()}" download="output.pdf">הורדת טופס</a>'
-                    
-                    st.markdown(href, unsafe_allow_html=True)
-            else:
-                st.write("אנא אשר את ההצהרה")
+                st.markdown(href, unsafe_allow_html=True)
+        else:
+            st.write("אנא אשר את ההצהרה")
 
 
 
