@@ -69,7 +69,7 @@ def create_pdf(fields, table_data):
     
     return output_stream
 
-st.title("Edit PDF Document")
+st.title("טופס בטיחות - MRI")
 
 # Min value for the date input field in datetime date format
 min_date = datetime.date(1930, 1, 1)
