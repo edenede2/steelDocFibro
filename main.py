@@ -305,7 +305,7 @@ with st.form(key='table_form', clear_on_submit=False):
             'question_obj': st.write(questions_list[i]),
             'question': st.write(f"סמנו את המתאים", key=f"question_labels_{i}"), 
             'answer': st.radio("", options=['כן', 'לא', 'לא יודע/ת'], key=f"answer_{i}"),
-            'details_lab': st.text_input("אם כן / לא יודע/ת הוסיפו פרטים + תאריך של האירוע",max_chars= 45,key=f"details_lab_{i}"),
+            'details': st.text_input("אם כן / לא יודע/ת הוסיפו פרטים + תאריך של האירוע",max_chars= 45,key=f"details_lab_{i}"),
         }
 
         table_data.append(row)
