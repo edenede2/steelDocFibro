@@ -169,7 +169,7 @@ def create_pdf(fields, table_data, signature_img=None):
                 
     if signature_img:
         try:
-            can.drawImage(signature_img, 380, 125, width=70, height=30, mask=[0,255,255,255,255,255])
+            can.drawImage(signature_img, 380, 125, width=70, height=40, mask=[0,255,255,255,255,255])
         except Exception as e:
             st.write(f"Error drawing image: {e}")
 
