@@ -29,8 +29,8 @@ def create_pdf(fields, table_data, signature_img=None):
     can = canvas.Canvas(packet, pagesize=letter)
     
     # Register and set the font
-    pdfmetrics.registerFont(TTFont('FreeSans', font_path))
-    can.setFont('FreeSans', 10)
+    pdfmetrics.registerFont(TTFont('OpenSans', font_path))
+    can.setFont('OpenSans', 10)
 
 
     # Adjusted coordinates (from pdfplumber output, converting from points to position in the document)
