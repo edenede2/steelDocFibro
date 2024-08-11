@@ -114,7 +114,10 @@ def create_pdf(fields, table_data, signature_img=None):
             ros_counter += 1
 
     can.showPage()
-
+    
+    pdfmetrics.registerFont(TTFont('OpenSans', font_path))
+    can.setFont('OpenSans', 10)
+    
     x_name = 325
     y_name = 900
 
