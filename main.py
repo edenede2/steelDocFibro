@@ -21,6 +21,8 @@ from email.message import EmailMessage
 pdf_path = 'doc.pdf'
 font_path = "OpenSans-VariableFont_wdth,wght.ttf"  # Adjust this to the path of your font file
 
+pdfmetrics.registerFont(TTFont('OpenSans', font_path))
+
 def reversing_chars(s):
     return s[::-1]
 
@@ -29,7 +31,7 @@ def create_pdf(fields, table_data, signature_img=None):
     can = canvas.Canvas(packet, pagesize=letter)
     
     # Register and set the font
-    pdfmetrics.registerFont(TTFont('OpenSans', font_path))
+    #pdfmetrics.registerFont(TTFont('OpenSans', font_path))
     can.setFont('OpenSans', 10)
 
 
@@ -115,7 +117,7 @@ def create_pdf(fields, table_data, signature_img=None):
 
     can.showPage()
     
-    pdfmetrics.registerFont(TTFont('OpenSans', font_path))
+    #pdfmetrics.registerFont(TTFont('OpenSans', font_path))
     can.setFont('OpenSans', 10)
     
     x_name = 325
