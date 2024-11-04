@@ -24,7 +24,17 @@ font_path = "OpenSans-VariableFont_wdth,wght.ttf"  # Adjust this to the path of 
 pdfmetrics.registerFont(TTFont('OpenSans', font_path))
 
 def reversing_chars(s):
-    return s[::-1]
+    # Split text by Hebrew characters and numbers separately
+    parts = re.split(r'([0-9]+|[\u0590-\u05FF]+)', s)
+    
+    # Reverse Hebrew parts, keep numbers as they are
+    reversed_parts = [
+        part[::-1] if re.match(r'[\u0590-\u05FF]', part) else part
+        for part in parts
+    ]
+    
+    # Join all parts back into a single string
+    return ''.join(reversed_parts)
 
 
 def create_pdf(fields, table_data, signature_img=None):
